@@ -23,3 +23,5 @@
 hs_err_pid*
 /jfxws/target/
 /jfxws-demo/target/
+/windowsystemfx/target/
+/windowsystemfx-demo/target/

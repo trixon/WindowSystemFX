@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>se.trixon.jfxws</groupId>
+    <groupId>se.trixon.windowsystemfx</groupId>
     <artifactId>parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>jfxws</module>
-        <module>jfxws-demo</module>
+        <module>windowsystemfx</module>
+        <module>windowsystemfx-demo</module>
     </modules>
 
     <properties>
         <bintray.repo>trixon/maven</bintray.repo>
-        <bintray.package>jfxws</bintray.package>
+        <bintray.package>windowsystemfx</bintray.package>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <netbeans.hint.license>apache20</netbeans.hint.license>
@@ -116,9 +116,9 @@
         </developer>
     </developers>
     <scm>
-        <url>https://github.com/trixon/jfxws</url>
-        <connection>scm:git:git://github.com/trixon/jfxws.git</connection>
-        <developerConnection>scm:git:git@github.com:trixon/jfxws.git</developerConnection>
+        <url>https://github.com/trixon/windowsystemfx</url>
+        <connection>scm:git:git://github.com/trixon/WindowSystemFX.git</connection>
+        <developerConnection>scm:git:git@github.com:trixon/WindowSystemFX.git</developerConnection>
     </scm>
     <build>
         <pluginManagement>
