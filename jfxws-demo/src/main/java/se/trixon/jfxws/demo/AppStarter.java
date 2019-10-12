@@ -17,8 +17,9 @@ package se.trixon.jfxws.demo;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import se.trixon.jfxws.WindowManager;
+import se.trixon.jfxws.temp.StaticWindowManager;
 
 /**
  *
@@ -26,14 +27,17 @@ import javafx.stage.Stage;
  */
 public class AppStarter extends Application {
 
+    private WindowManager mWindowManager = WindowManager.getInstance();
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-        TabPane tabPane = new TabPane();
-        Scene myScene = new Scene(tabPane);
+//        Scene myScene = new Scene(mWindowManager.getRootPane());
+
+        Scene myScene = new Scene(new StaticWindowManager());
         primaryStage.setTitle("JFXWS Demo");
         primaryStage.setScene(myScene);
         primaryStage.setWidth(1000);
