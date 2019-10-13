@@ -13,23 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package se.trixon.windowsystemfx;
+package se.trixon.windowsystemfx.demo.modes;
 
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
+import org.openide.util.lookup.ServiceProvider;
+import se.trixon.windowsystemfx.Mode;
+import se.trixon.windowsystemfx.ModeLayout;
 
+@Mode.Description(
+        preferredId = "top",
+        parentId = "root",
+        modeLayout = ModeLayout.TABS,
+        position = 0
+)
+@Mode.Registration(
+        openAtStartup = true
+)
 /**
  *
  * @author Patrik Karlström
  */
-public class RootPane extends BorderPane {
+@ServiceProvider(service = Mode.class)
+public class TopMode extends Mode {
 
-    public RootPane() {
-        setTop(new Label("top"));
-        setLeft(new Label("left"));
-        setBottom(new Label("bottom"));
-        setRight(new Label("right"));
-        setCenter(new Label("center"));
+    public TopMode() {
     }
 
 }

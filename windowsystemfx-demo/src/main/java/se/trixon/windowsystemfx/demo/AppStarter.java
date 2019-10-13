@@ -17,9 +17,12 @@ package se.trixon.windowsystemfx.demo;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import se.trixon.windowsystemfx.WindowManager;
-import se.trixon.windowsystemfx.temp.StaticWindowManager;
 
 /**
  *
@@ -34,15 +37,19 @@ public class AppStarter extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
-//        Scene myScene = new Scene(mWindowManager.getRootPane());
+    public void start(Stage stage) {
+        mWindowManager.init();
+        Scene scene = new Scene(mWindowManager.getRoot());
+        scene.getAccelerators().put(new KeyCodeCombination(KeyCode.Q, KeyCombination.SHORTCUT_DOWN), () -> {
+            stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
+            System.exit(0);
+        });
 
-        Scene myScene = new Scene(new StaticWindowManager());
-        primaryStage.setTitle("WindowSystemFX Demo");
-        primaryStage.setScene(myScene);
-        primaryStage.setWidth(1000);
-        primaryStage.setHeight(700);
-        primaryStage.show();
-        primaryStage.centerOnScreen();
+        stage.setTitle("WindowSystemFX Demo");
+        stage.setScene(scene);
+        stage.setWidth(1000);
+        stage.setHeight(700);
+        stage.show();
+        stage.centerOnScreen();
     }
 }
