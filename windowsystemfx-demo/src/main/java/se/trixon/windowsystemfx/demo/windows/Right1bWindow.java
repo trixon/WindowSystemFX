@@ -15,22 +15,17 @@
  */
 package se.trixon.windowsystemfx.demo.windows;
 
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Window;
 import se.trixon.windowsystemfx.WindowSystemComponent;
 
 @WindowSystemComponent.Description(
         iconBase = "",
-        preferredId = "se.trixon.windowsystemfx.demo.windows.middleMiddle",
-        parentId = "middleMiddle",
+        preferredId = "se.trixon.windowsystemfx.demo.windows.middleRight1b",
+        parentId = "middleRight1",
         position = 2
 )
 /**
@@ -38,12 +33,12 @@ import se.trixon.windowsystemfx.WindowSystemComponent;
  * @author Patrik Karlström
  */
 @ServiceProvider(service = Window.class)
-public class MiddleMiddleWindow extends Window {
+public class Right1bWindow extends Window {
 
     private BorderPane mNode;
 
-    public MiddleMiddleWindow() {
-        setName("middleMiddle window");
+    public Right1bWindow() {
+        setName("R1B");
     }
 
     @Override
@@ -56,7 +51,6 @@ public class MiddleMiddleWindow extends Window {
     }
 
     private void createUI() {
-        mNode = new BorderPane(new Label("center"));
-        mNode.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        mNode = new BorderPane(new Label(getName()));
     }
 }

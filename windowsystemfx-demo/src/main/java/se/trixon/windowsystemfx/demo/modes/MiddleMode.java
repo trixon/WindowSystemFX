@@ -21,39 +21,19 @@ import se.trixon.windowsystemfx.ModeLayout;
 import se.trixon.windowsystemfx.WindowSystemComponent;
 
 @WindowSystemComponent.Description(
-        preferredId = MiddleRightMode.ID,
+        preferredId = "middleMiddle",
         parentId = "middle",
-        modeLayout = ModeLayout.SPLIT_VERTICAL
+        modeLayout = ModeLayout.STACK,
+        position = 2
 )
 /**
  *
  * @author Patrik Karlström
  */
 @ServiceProvider(service = Mode.class)
-public class MiddleRightMode extends Mode {
+public class MiddleMode extends Mode {
 
-    static final String ID = "middleRight";
-
-    @WindowSystemComponent.Description(
-            preferredId = "middleRight1",
-            parentId = MiddleRightMode.ID,
-            modeLayout = ModeLayout.TABS,
-            position = 1
-    )
-    @ServiceProvider(service = Mode.class)
-    public static class MiddleRightMode1 extends Mode {
-
-    }
-
-    @WindowSystemComponent.Description(
-            preferredId = "middleRight2",
-            parentId = MiddleRightMode.ID,
-            modeLayout = ModeLayout.TABS,
-            position = 2
-    )
-    @ServiceProvider(service = Mode.class)
-    public static class MiddleRightMode2 extends Mode {
-
+    public MiddleMode() {
     }
 
 }

@@ -13,26 +13,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package se.trixon.windowsystemfx.demo.modes;
+package se.trixon.windowsystemfx.demo.windows;
 
+import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import org.openide.util.lookup.ServiceProvider;
-import se.trixon.windowsystemfx.Mode;
-import se.trixon.windowsystemfx.ModeLayout;
+import se.trixon.windowsystemfx.Window;
 import se.trixon.windowsystemfx.WindowSystemComponent;
 
 @WindowSystemComponent.Description(
-        preferredId = "middleMiddle",
-        parentId = "middle",
-        modeLayout = ModeLayout.STACK
+        iconBase = "",
+        preferredId = "se.trixon.windowsystemfx.demo.windows.middleLeft3a",
+        parentId = "middleLeft3",
+        position = 1
 )
 /**
  *
  * @author Patrik Karlström
  */
-@ServiceProvider(service = Mode.class)
-public class MiddleMiddleMode extends Mode {
+@ServiceProvider(service = Window.class)
+public class Left3aWindow extends Window {
 
-    public MiddleMiddleMode() {
+    private BorderPane mNode;
+
+    public Left3aWindow() {
+        setName("L3A");
     }
 
+    @Override
+    public Node getNode() {
+        if ((mNode == null)) {
+            createUI();
+        }
+
+        return mNode;
+    }
+
+    private void createUI() {
+        mNode = new BorderPane(new Label(getName()));
+    }
 }

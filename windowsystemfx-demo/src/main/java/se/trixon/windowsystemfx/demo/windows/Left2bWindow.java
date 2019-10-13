@@ -24,21 +24,21 @@ import se.trixon.windowsystemfx.WindowSystemComponent;
 
 @WindowSystemComponent.Description(
         iconBase = "",
-        preferredId = "se.trixon.windowsystemfx.demo.windows.middleRight1b",
-        parentId = "middleRight1",
-        position = 2
+        preferredId = "se.trixon.windowsystemfx.demo.windows.middleLeft2b",
+        parentId = "middleLeft2",
+        position = 1
 )
 /**
  *
  * @author Patrik Karlström
  */
 @ServiceProvider(service = Window.class)
-public class MiddleRight1bWindow extends Window {
+public class Left2bWindow extends Window {
 
     private BorderPane mNode;
 
-    public MiddleRight1bWindow() {
-        setName("R1B");
+    public Left2bWindow() {
+        setName("L2B");
     }
 
     @Override

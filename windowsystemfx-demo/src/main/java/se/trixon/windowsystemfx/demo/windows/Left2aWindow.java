@@ -24,8 +24,8 @@ import se.trixon.windowsystemfx.WindowSystemComponent;
 
 @WindowSystemComponent.Description(
         iconBase = "",
-        preferredId = "se.trixon.windowsystemfx.demo.windows.middleLeft3a",
-        parentId = "middleLeft3",
+        preferredId = "se.trixon.windowsystemfx.demo.windows.middleLeft2a",
+        parentId = "middleLeft2",
         position = 1
 )
 /**
@@ -33,12 +33,12 @@ import se.trixon.windowsystemfx.WindowSystemComponent;
  * @author Patrik Karlström
  */
 @ServiceProvider(service = Window.class)
-public class MiddleLeft3aWindow extends Window {
+public class Left2aWindow extends Window {
 
     private BorderPane mNode;
 
-    public MiddleLeft3aWindow() {
-        setName("L3A");
+    public Left2aWindow() {
+        setName("L2A");
     }
 
     @Override
