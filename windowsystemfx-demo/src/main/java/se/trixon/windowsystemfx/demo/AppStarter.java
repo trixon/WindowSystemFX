@@ -16,10 +16,14 @@
 package se.trixon.windowsystemfx.demo;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToolBar;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import se.trixon.windowsystemfx.WindowManager;
@@ -30,6 +34,7 @@ import se.trixon.windowsystemfx.WindowManager;
  */
 public class AppStarter extends Application {
 
+    private BorderPane mRoot;
     private WindowManager mWindowManager = WindowManager.getInstance();
 
     public static void main(String[] args) {
@@ -39,7 +44,9 @@ public class AppStarter extends Application {
     @Override
     public void start(Stage stage) {
         mWindowManager.init();
-        Scene scene = new Scene(mWindowManager.getRoot());
+        mRoot = new BorderPane(mWindowManager.getRoot());
+        mRoot.setTop(createToolBar());
+        Scene scene = new Scene(mRoot);
         scene.getAccelerators().put(new KeyCodeCombination(KeyCode.Q, KeyCombination.SHORTCUT_DOWN), () -> {
             stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
         });
@@ -50,5 +57,18 @@ public class AppStarter extends Application {
         stage.setHeight(700);
         stage.show();
         stage.centerOnScreen();
+    }
+
+    private Node createToolBar() {
+        ToolBar toolBar = new ToolBar();
+        Button b1 = new Button("close L1A");
+        b1.setOnAction((event) -> {
+            System.out.println("TODO");
+        });
+        toolBar.getItems().addAll(
+                b1
+        );
+
+        return toolBar;
     }
 }

@@ -15,6 +15,7 @@
  */
 package se.trixon.windowsystemfx.demo.windows;
 
+import java.util.Date;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import org.openide.util.lookup.ServiceProvider;
@@ -37,7 +38,7 @@ public class OutputWindow extends Window {
     private TextArea mNode;
 
     public OutputWindow() {
-        setName("output window");
+        setName("output");
     }
 
     @Override
@@ -50,6 +51,6 @@ public class OutputWindow extends Window {
     }
 
     private void createUI() {
-        mNode = new TextArea("TextArea in " + getName());
+        mNode = new TextArea(new Date().toString() + ": Nothing to report");
     }
 }

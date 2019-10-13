@@ -18,8 +18,8 @@ package se.trixon.windowsystemfx.demo.modes;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Mode;
 import se.trixon.windowsystemfx.ModeLayout;
-import static se.trixon.windowsystemfx.demo.modes.RootMode.ROOT_ID;
 import se.trixon.windowsystemfx.WindowSystemComponent;
+import static se.trixon.windowsystemfx.demo.modes.RootMode.ROOT_ID;
 
 @WindowSystemComponent.Description(
         preferredId = RootMode.ROOT_ID,
@@ -41,7 +41,7 @@ public class RootMode extends Mode {
             modeLayout = ModeLayout.TABS,
             position = 0
     )
-    @ServiceProvider(service = Mode.class)
+//    @ServiceProvider(service = Mode.class)
     public static class TopMode extends Mode {
 
     }
@@ -60,7 +60,7 @@ public class RootMode extends Mode {
     @WindowSystemComponent.Description(
             preferredId = "bottom",
             parentId = ROOT_ID,
-            modeLayout = ModeLayout.STACK,
+            modeLayout = ModeLayout.TABS,
             position = 2
     )
     @ServiceProvider(service = Mode.class)
