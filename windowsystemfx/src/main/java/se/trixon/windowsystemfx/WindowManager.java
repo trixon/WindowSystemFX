@@ -25,7 +25,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.Region;
 import org.openide.util.Lookup;
-import org.openide.util.LookupEvent;
 
 /**
  *
@@ -75,9 +74,6 @@ public class WindowManager {
     }
 
     private WindowManager() {
-        Lookup.getDefault().lookupResult(Window.class).addLookupListener((LookupEvent ev) -> {
-            //populateWindows();
-        });
     }
 
     public Mode getModeForId(String id) {

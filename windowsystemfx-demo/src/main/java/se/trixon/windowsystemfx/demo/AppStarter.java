@@ -42,7 +42,6 @@ public class AppStarter extends Application {
         Scene scene = new Scene(mWindowManager.getRoot());
         scene.getAccelerators().put(new KeyCodeCombination(KeyCode.Q, KeyCombination.SHORTCUT_DOWN), () -> {
             stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
-            System.exit(0);
         });
 
         stage.setTitle("WindowSystemFX Demo");
