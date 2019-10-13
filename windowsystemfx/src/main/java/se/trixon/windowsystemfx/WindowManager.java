@@ -95,7 +95,7 @@ public class WindowManager {
 
         for (Window window : windows) {
             try {
-                getModeForId(window.modeId()).add(window);
+                getModeForId(window.parentId()).add(window);
             } catch (Exception e) {
                 System.out.println(window);
                 System.err.println(e);

@@ -15,78 +15,17 @@
  */
 package se.trixon.windowsystemfx;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 
 /**
  *
  * @author Patrik Karlström
  */
-public abstract class Window {
-
-    private final StringProperty mNameProperty = new SimpleStringProperty();
+public abstract class Window extends WindowSystemComponent {
 
     public Window() {
     }
 
-    public String getName() {
-        return mNameProperty.get();
-    }
-
     public abstract Node getNode();
-
-    public StringProperty nameProperty() {
-        return mNameProperty;
-    }
-
-    public void setName(String name) {
-        mNameProperty.set(name);
-    }
-
-    protected String modeId() {
-        Class<?> clazz = getClass();
-        Description id = clazz.getAnnotation(Description.class);
-        if (id != null) {
-            return id.modeId();
-        }
-
-        return null;
-    }
-
-    protected String preferredId() {
-        Class<?> clazz = getClass();
-        Description id = clazz.getAnnotation(Description.class);
-        if (id != null) {
-            return id.preferredID();
-        }
-
-        return getClass().getName();
-    }
-
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.TYPE)
-    public static @interface Description {
-
-        public String preferredID();
-
-        public String iconBase() default "";
-
-        public String modeId();
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @Target({ElementType.TYPE, ElementType.METHOD})
-    public static @interface Registration {
-
-        int position() default Integer.MAX_VALUE;
-
-        boolean openAtStartup();
-
-    }
 
 }

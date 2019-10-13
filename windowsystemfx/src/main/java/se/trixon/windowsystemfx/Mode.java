@@ -15,13 +15,7 @@
  */
 package se.trixon.windowsystemfx;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 import java.util.Random;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
@@ -37,11 +31,10 @@ import javafx.scene.shape.Rectangle;
  *
  * @author Patrik Karlström
  */
-public abstract class Mode {
+public abstract class Mode extends WindowSystemComponent {
 
     private static final Random RANDOM = new Random();
 
-    private final StringProperty mNameProperty = new SimpleStringProperty();
     private SplitPane mSplitPane;
     private StackPane mStackPane;
     private TabPane mTabPane;
@@ -71,10 +64,6 @@ public abstract class Mode {
         }
     }
 
-    public String getName() {
-        return mNameProperty.get();
-    }
-
     public Region getRegion() {
         switch (getLayout()) {
             case SPLIT_HORIZONTAL:
@@ -90,50 +79,6 @@ public abstract class Mode {
             default:
                 return null;
         }
-    }
-
-    public StringProperty nameProperty() {
-        return mNameProperty;
-    }
-
-    public void setName(String name) {
-        mNameProperty.set(name);
-    }
-
-    protected ModeLayout getLayout() {
-        Description description = getClass().getAnnotation(Description.class);
-        if (description != null) {
-            return description.modeLayout();
-        }
-
-        return ModeLayout.TABS;
-    }
-
-    protected int getPosition() {
-        Description description = getClass().getAnnotation(Description.class);
-        if (description != null) {
-            return description.position();
-        }
-
-        return Integer.MAX_VALUE;
-    }
-
-    protected String parentId() {
-        Description description = getClass().getAnnotation(Description.class);
-        if (description != null) {
-            return description.parentId();
-        }
-
-        return getClass().getName();
-    }
-
-    protected String preferredId() {
-        Description description = getClass().getAnnotation(Description.class);
-        if (description != null) {
-            return description.preferredId();
-        }
-
-        return getClass().getName();
     }
 
     private ObservableList<Node> getItems() {
@@ -184,23 +129,4 @@ public abstract class Mode {
         return Color.rgb(RANDOM.nextInt(256), RANDOM.nextInt(256), RANDOM.nextInt(256));
     }
 
-    @Retention(RetentionPolicy.RUNTIME)
-    @Target(ElementType.TYPE)
-    public static @interface Description {
-
-        public String preferredId();
-
-        public String parentId() default "";
-
-        public ModeLayout modeLayout() default ModeLayout.TABS;
-
-        public int position() default Integer.MAX_VALUE;
-    }
-
-    @Retention(RetentionPolicy.SOURCE)
-    @Target({ElementType.TYPE, ElementType.METHOD})
-    public static @interface Registration {
-
-        boolean openAtStartup();
-    }
 }
