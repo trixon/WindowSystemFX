@@ -25,14 +25,12 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Window;
+import se.trixon.windowsystemfx.WindowSystemComponent;
 
-@Window.Description(
+@WindowSystemComponent.Description(
         iconBase = "",
-        preferredID = "se.trixon.windowsystemfx.demo.windows.middleMiddle",
-        modeId = "middleMiddle"
-)
-@Window.Registration(
-        openAtStartup = true,
+        preferredId = "se.trixon.windowsystemfx.demo.windows.middleMiddle",
+        parentId = "middleMiddle",
         position = 2
 )
 /**

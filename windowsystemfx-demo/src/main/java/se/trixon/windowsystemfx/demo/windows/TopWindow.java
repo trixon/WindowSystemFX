@@ -19,14 +19,12 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Window;
+import se.trixon.windowsystemfx.WindowSystemComponent;
 
-@Window.Description(
+@WindowSystemComponent.Description(
         iconBase = "",
-        preferredID = "se.trixon.windowsystemfx.demo.windows.TopID",
-        modeId = "top"
-)
-@Window.Registration(
-        openAtStartup = true,
+        preferredId = "se.trixon.windowsystemfx.demo.windows.TopID",
+        parentId = "top",
         position = 1
 )
 /**

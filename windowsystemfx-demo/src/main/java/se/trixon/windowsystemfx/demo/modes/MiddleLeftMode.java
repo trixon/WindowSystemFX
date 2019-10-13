@@ -18,14 +18,12 @@ package se.trixon.windowsystemfx.demo.modes;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Mode;
 import se.trixon.windowsystemfx.ModeLayout;
+import se.trixon.windowsystemfx.WindowSystemComponent;
 
-@Mode.Description(
-        preferredId = "middleLeft",
+@WindowSystemComponent.Description(
+        preferredId = MiddleLeftMode.ID,
         parentId = "middle",
         modeLayout = ModeLayout.SPLIT_VERTICAL
-)
-@Mode.Registration(
-        openAtStartup = true
 )
 /**
  *
@@ -34,7 +32,39 @@ import se.trixon.windowsystemfx.ModeLayout;
 @ServiceProvider(service = Mode.class)
 public class MiddleLeftMode extends Mode {
 
-    public MiddleLeftMode() {
+    static final String ID = "middleLeft";
+
+    @WindowSystemComponent.Description(
+            preferredId = "middleLeft1",
+            parentId = MiddleLeftMode.ID,
+            modeLayout = ModeLayout.TABS,
+            position = 1
+    )
+    @ServiceProvider(service = Mode.class)
+    public static class MiddleLeftMode1 extends Mode {
+
+    }
+
+    @WindowSystemComponent.Description(
+            preferredId = "middleLeft2",
+            parentId = MiddleLeftMode.ID,
+            modeLayout = ModeLayout.TABS,
+            position = 2
+    )
+    @ServiceProvider(service = Mode.class)
+    public static class MiddleLeftMode2 extends Mode {
+
+    }
+
+    @WindowSystemComponent.Description(
+            preferredId = "middleLeft3",
+            parentId = MiddleLeftMode.ID,
+            modeLayout = ModeLayout.TABS,
+            position = 3
+    )
+    @ServiceProvider(service = Mode.class)
+    public static class MiddleLeftMode3 extends Mode {
+
     }
 
 }

@@ -20,14 +20,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Window;
+import se.trixon.windowsystemfx.WindowSystemComponent;
 
-@Window.Description(
+@WindowSystemComponent.Description(
         iconBase = "",
-        preferredID = "se.trixon.windowsystemfx.demo.windows.middleLeft2b",
-        modeId = "middleLeft2"
-)
-@Window.Registration(
-        openAtStartup = true,
+        preferredId = "se.trixon.windowsystemfx.demo.windows.middleLeft2b",
+        parentId = "middleLeft2",
         position = 2
 )
 /**
@@ -40,7 +38,7 @@ public class MiddleLeft2bWindow extends Window {
     private BorderPane mNode;
 
     public MiddleLeft2bWindow() {
-        setName("2B");
+        setName("L2B");
     }
 
     @Override

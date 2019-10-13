@@ -18,14 +18,12 @@ package se.trixon.windowsystemfx.demo.modes;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Mode;
 import se.trixon.windowsystemfx.ModeLayout;
+import se.trixon.windowsystemfx.WindowSystemComponent;
 
-@Mode.Description(
+@WindowSystemComponent.Description(
         preferredId = "middleMiddle",
         parentId = "middle",
         modeLayout = ModeLayout.STACK
-)
-@Mode.Registration(
-        openAtStartup = true
 )
 /**
  *

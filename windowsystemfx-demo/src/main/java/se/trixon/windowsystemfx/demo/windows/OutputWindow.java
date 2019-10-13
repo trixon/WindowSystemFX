@@ -19,14 +19,12 @@ import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Window;
+import se.trixon.windowsystemfx.WindowSystemComponent;
 
-@Window.Description(
+@WindowSystemComponent.Description(
         iconBase = "",
-        preferredID = "se.trixon.windowsystemfx.demo.windows.OutputID",
-        modeId = "bottom"
-)
-@Window.Registration(
-        openAtStartup = true,
+        preferredId = "se.trixon.windowsystemfx.demo.windows.OutputID",
+        parentId = "bottom",
         position = 1
 )
 /**

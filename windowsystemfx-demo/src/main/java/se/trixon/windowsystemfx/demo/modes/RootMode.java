@@ -18,14 +18,13 @@ package se.trixon.windowsystemfx.demo.modes;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Mode;
 import se.trixon.windowsystemfx.ModeLayout;
+import static se.trixon.windowsystemfx.demo.modes.RootMode.ROOT_ID;
+import se.trixon.windowsystemfx.WindowSystemComponent;
 
-@Mode.Description(
-        preferredId = "root",
+@WindowSystemComponent.Description(
+        preferredId = RootMode.ROOT_ID,
         modeLayout = ModeLayout.SPLIT_VERTICAL,
         position = 0
-)
-@Mode.Registration(
-        openAtStartup = true
 )
 /**
  *
@@ -34,6 +33,39 @@ import se.trixon.windowsystemfx.ModeLayout;
 @ServiceProvider(service = Mode.class)
 public class RootMode extends Mode {
 
-    public RootMode() {
+    public static final String ROOT_ID = "root";
+
+    @WindowSystemComponent.Description(
+            preferredId = "top",
+            parentId = ROOT_ID,
+            modeLayout = ModeLayout.TABS,
+            position = 0
+    )
+    @ServiceProvider(service = Mode.class)
+    public static class TopMode extends Mode {
+
     }
+
+    @WindowSystemComponent.Description(
+            preferredId = "middle",
+            parentId = ROOT_ID,
+            modeLayout = ModeLayout.SPLIT_HORIZONTAL,
+            position = 1
+    )
+    @ServiceProvider(service = Mode.class)
+    public static class MiddleMode extends Mode {
+
+    }
+
+    @WindowSystemComponent.Description(
+            preferredId = "bottom",
+            parentId = ROOT_ID,
+            modeLayout = ModeLayout.STACK,
+            position = 2
+    )
+    @ServiceProvider(service = Mode.class)
+    public static class BottomMode extends Mode {
+
+    }
+
 }
