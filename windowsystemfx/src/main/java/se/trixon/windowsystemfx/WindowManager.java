@@ -16,7 +16,9 @@
 package se.trixon.windowsystemfx;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Map;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -31,11 +33,41 @@ import org.openide.util.LookupEvent;
  */
 public class WindowManager {
 
+    /**
+     * A map with all modes with ID as key
+     */
     private HashMap<String, Mode> mIdModes = new HashMap<>();
+    /**
+     * A list of modes per Mode(id)
+     */
+    private final HashMap<String, ArrayList<Mode>> mModeModes = new HashMap<>();
+    /**
+     * A list of windows per Mode(id)
+     */
+    private final HashMap<String, ArrayList<Window>> mModeWindows = new HashMap<>();
+    /**
+     * A list of all modes
+     */
     private final ObservableList<Mode> mModes = FXCollections.observableArrayList();
+    /**
+     * A list property of all modes
+     */
     private final ListProperty<Mode> mModesProperty = new SimpleListProperty<>(mModes);
+    /**
+     * A comparator for the position
+     */
+    private Comparator<WindowSystemComponent> mPositionComparator = Comparator.comparing(WindowSystemComponent::getPosition);
+    /**
+     * The root UI object, typically a SplitPane
+     */
     private Region mRootPane;
+    /**
+     * A list of all windows
+     */
     private final ObservableList<Window> mWindows = FXCollections.observableArrayList();
+    /**
+     * A list property of all windows
+     */
     private final ListProperty<Window> mWindowsProperty = new SimpleListProperty<>(mWindows);
 
     public static WindowManager getInstance() {
@@ -46,7 +78,6 @@ public class WindowManager {
         Lookup.getDefault().lookupResult(Window.class).addLookupListener((LookupEvent ev) -> {
             //populateWindows();
         });
-
     }
 
     public Mode getModeForId(String id) {
@@ -72,21 +103,25 @@ public class WindowManager {
 
     private void populateModes() {
         var modes = new ArrayList<>(Lookup.getDefault().lookupAll(Mode.class));
+        mModes.addAll(modes);
+
         for (Mode mode : modes) {
             if (mode.parentId().equals("")) {
                 mRootPane = mode.getRegion();
             }
+            mModeModes.computeIfAbsent(mode.parentId(), k -> new ArrayList<>()).add(mode);
             mIdModes.put(mode.preferredId(), mode);
         }
 
-        for (Mode mode : modes) {
-            Mode parentMode = mIdModes.get(mode.parentId());
-            if (parentMode != null) {
-                parentMode.add(mode);
+        for (Map.Entry<String, ArrayList<Mode>> entry : mModeModes.entrySet()) {
+            Mode mode = getModeForId(entry.getKey());
+            ArrayList<Mode> list = entry.getValue();
+            list.sort(mPositionComparator);
+
+            if (mode != null) {
+                mode.addModes(list);
             }
         }
-
-        mModes.addAll(modes);
     }
 
     private void populateWindows() {
@@ -94,11 +129,15 @@ public class WindowManager {
         mWindows.addAll(windows);
 
         for (Window window : windows) {
-            try {
-                getModeForId(window.parentId()).add(window);
-            } catch (Exception e) {
-                System.out.println(window);
-                System.err.println(e);
+            mModeWindows.computeIfAbsent(window.parentId(), k -> new ArrayList<>()).add(window);
+        }
+
+        for (Map.Entry<String, ArrayList<Window>> entry : mModeWindows.entrySet()) {
+            Mode mode = getModeForId(entry.getKey());
+            ArrayList<Window> list = entry.getValue();
+            list.sort(mPositionComparator);
+            if (mode != null) {
+                mode.addWindows(list);
             }
         }
     }

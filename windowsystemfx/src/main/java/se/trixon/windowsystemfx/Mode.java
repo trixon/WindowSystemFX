@@ -15,6 +15,7 @@
  */
 package se.trixon.windowsystemfx;
 
+import java.util.ArrayList;
 import java.util.Random;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
@@ -42,11 +43,17 @@ public abstract class Mode extends WindowSystemComponent {
     public Mode() {
     }
 
-    public void add(Mode mode) {
+    public void addMode(Mode mode) {
         getItems().add(mode.getRegion());
     }
 
-    public void add(Window window) {
+    public void addModes(ArrayList<Mode> modes) {
+        for (Mode mode : modes) {
+            getItems().add(mode.getRegion());
+        }
+    }
+
+    public void addWindow(Window window) {
         switch (getLayout()) {
             case SPLIT_HORIZONTAL:
             case SPLIT_VERTICAL:
@@ -61,6 +68,12 @@ public abstract class Mode extends WindowSystemComponent {
                 getTabPane().getTabs().add(tab);
                 tab.textProperty().bind(window.nameProperty());
                 break;
+        }
+    }
+
+    public void addWindows(ArrayList<Window> windows) {
+        for (Window window : windows) {
+            addWindow(window);
         }
     }
 
@@ -89,9 +102,6 @@ public abstract class Mode extends WindowSystemComponent {
 
             case STACK:
                 return getStackPane().getChildren();
-
-            case TABS:
-                return getTabPane().getChildrenUnmodifiable();
 
             default:
                 return null;
