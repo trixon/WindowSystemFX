@@ -23,6 +23,7 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import org.openide.util.Lookup;
 
@@ -31,6 +32,11 @@ import org.openide.util.Lookup;
  * @author Patrik Karlström
  */
 public class WindowManager {
+
+    /**
+     * The displayed root
+     */
+    private final BorderPane mHolder = new BorderPane();
 
     /**
      * A map with all modes with ID as key
@@ -61,6 +67,14 @@ public class WindowManager {
      */
     private Region mRootPane;
     /**
+     * The id of the Window displayed in full
+     */
+    private String mStoredWindowId;
+    /**
+     * The id of the Parent of the Window displayed in full
+     */
+    private String mStoredWindowParentId;
+    /**
      * A list of all windows
      */
     private final ObservableList<Window> mWindows = FXCollections.observableArrayList();
@@ -81,16 +95,40 @@ public class WindowManager {
     }
 
     public Region getRoot() {
-        return mRootPane;
+        return mHolder;
+    }
+
+    public Window getWindowById(String id) {
+        return mWindows.stream()
+                .filter(w -> id.equalsIgnoreCase(w.preferredId()))
+                .findAny()
+                .orElse(null);
     }
 
     public void init() {
         populateModes();
         populateWindows();
+        mHolder.setCenter(mRootPane);
     }
 
     public ListProperty<Mode> modesProperty() {
         return mModesProperty;
+    }
+
+    public void showOnlyWindowById(String id) {
+        Window window = getWindowById(id);
+
+        mStoredWindowId = id;
+        mStoredWindowParentId = window.parentId();
+
+        mHolder.setCenter(window.getNode());
+    }
+
+    public void showRoot() {
+        if (mHolder.getCenter() != mRootPane) {
+            getModeForId(mStoredWindowParentId).addWindow(getWindowById(mStoredWindowId));
+            mHolder.setCenter(mRootPane);
+        }
     }
 
     public ListProperty<Window> windowsProperty() {
