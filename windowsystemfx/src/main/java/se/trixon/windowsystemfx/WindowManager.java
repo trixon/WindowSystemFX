@@ -36,7 +36,12 @@ public class WindowManager {
     /**
      * The displayed root
      */
-    private final BorderPane mHolder = new BorderPane();
+    private final BorderPane mHolder = new BorderPane() {
+        @Override
+        public final String getUserAgentStylesheet() {
+            return Mode.class.getResource("css/main.css").toExternalForm();
+        }
+    };
 
     /**
      * A map with all modes with ID as key

@@ -16,25 +16,19 @@
 package se.trixon.windowsystemfx;
 
 import java.util.ArrayList;
-import java.util.Random;
 import javafx.collections.ObservableList;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 /**
  *
  * @author Patrik Karlström
  */
 public abstract class Mode extends WindowSystemComponent {
-
-    private static final Random RANDOM = new Random();
 
     private SplitPane mSplitPane;
     private StackPane mStackPane;
@@ -62,8 +56,7 @@ public abstract class Mode extends WindowSystemComponent {
                 break;
 
             case TABS:
-                var tab = new Tab(window.getName(), window.getNode());
-                tab.setGraphic(new Rectangle(16, 16, randomColor()));
+                var tab = new WindowTab(window);
 
                 getTabPane().getTabs().add(tab);
                 tab.textProperty().bind(window.nameProperty());
@@ -116,6 +109,9 @@ public abstract class Mode extends WindowSystemComponent {
             } else {
                 mSplitPane.setOrientation(Orientation.VERTICAL);
             }
+
+            mSplitPane.getStyleClass().clear();
+            mSplitPane.getStyleClass().add("window-system-mode");
         }
 
         return mSplitPane;
@@ -125,18 +121,16 @@ public abstract class Mode extends WindowSystemComponent {
         if (mStackPane == null) {
             mStackPane = new StackPane();
         }
+
         return mStackPane;
     }
 
     private TabPane getTabPane() {
         if (mTabPane == null) {
             mTabPane = new TabPane();
+            mTabPane.getStyleClass().add("window-system-tab-pane");
         }
+
         return mTabPane;
     }
-
-    private Color randomColor() {
-        return Color.rgb(RANDOM.nextInt(256), RANDOM.nextInt(256), RANDOM.nextInt(256));
-    }
-
 }

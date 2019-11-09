@@ -1,0 +1,49 @@
+/*
+Copyright 2019 Patrik Karlström.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+/*
+    Created on : 1 nov. 2019, 09:26:03
+    Author     : Patrik Karlström
+*/
+* {
+    -ws-split-color: red;
+}
+.window-system-mode > .split-pane-divider {
+    -fx-background-color: -ws-split-color;
+    -fx-padding: 0.025em;
+}
+
+/* horizontal the two nodes are placed to the left/right of each other. */
+.window-system-mode:horizontal > .split-pane-divider {
+    -fx-background-insets: 0, 0 1 0 1;
+}
+/* vertical the two nodes are placed on top of each other. */
+.window-system-mode:vertical > .split-pane-divider {
+    -fx-background-insets: 0, 1 0 1 0;
+}
+
+.window-system-tab-pane:top{
+    -fx-tab-min-height: 1.5em;
+}
+.window-system-tab-pane:top > .tab-header-area  {
+    /*-fx-background-insets: 0, 0 0 1 0, 1;*/
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.window-system-tab-pane:top > .tab-header-area > .tab-header-background {
+    /*-fx-background-insets: 0, 0 0 1 0, 1;*/
+    -fx-background-insets: 0;
+    /*-fx-background-color: -ws-split-color;*/
+}
