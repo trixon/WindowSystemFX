@@ -15,14 +15,24 @@
  */
 package se.trixon.windowsystemfx.demo.windows;
 
+import javafx.embed.swing.SwingNode;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
 import org.openide.util.lookup.ServiceProvider;
 import se.trixon.windowsystemfx.Window;
 import se.trixon.windowsystemfx.WindowSystemComponent;
@@ -40,7 +50,7 @@ import se.trixon.windowsystemfx.WindowSystemComponent;
 @ServiceProvider(service = Window.class)
 public class MiddleWindow extends Window {
 
-    private BorderPane mNode;
+    private SplitPane mNode;
 
     public MiddleWindow() {
         setName("middleMiddle window");
@@ -56,7 +66,30 @@ public class MiddleWindow extends Window {
     }
 
     private void createUI() {
-        mNode = new BorderPane(new Label("center"));
-        mNode.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        BorderPane bp = new BorderPane(new Label("center"));
+        bp.setTop(new TextField("qwe"));
+        bp.setLeft(getTabPane());
+        bp.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        SwingNode swingNode = new SwingNode();
+        SwingUtilities.invokeLater(() -> {
+            JTextArea ta = new JTextArea("swing");
+            ta.setEditable(true);
+            swingNode.setContent(ta);
+        });
+        bp.setBottom(swingNode);
+        Label label = new Label("botom");
+        mNode = new SplitPane(bp, new VBox(label));
+        mNode.setOrientation(Orientation.VERTICAL);
+        mNode.setId("www");
+    }
+
+    private TabPane getTabPane() {
+        Tab tab1 = new Tab("1");
+        tab1.setContent(new TextArea("q"));
+        Tab tab2 = new Tab("2");
+        Tab tab3 = new Tab("3");
+        TabPane tabPane = new TabPane(tab1, tab2, tab3);
+
+        return tabPane;
     }
 }

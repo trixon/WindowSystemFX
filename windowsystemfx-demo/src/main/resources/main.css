@@ -1,0 +1,87 @@
+/*
+Copyright 2019 Patrik Karlström.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+/*
+    Created on : 1 nov. 2019, 09:26:03
+    Author     : Patrik Karlström
+*/
+*{
+    -ws-split-color: blue;
+}
+.root{
+
+    -fx-font-size: 16pt;
+    -fx-font-family: "Courier New";
+    -fx-base: rgb(132, 145, 47);
+    -fx-background: rgb(225, 228, 203);
+}
+
+.button{
+    -fx-text-fill: rgb(49, 89, 23);
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+}
+#putton{
+    -fx-text-fill: rgb(9, 89, 3);
+    -fx-border-color: rgb(49, 189, 23);
+    -fx-border-radius: 40;
+    -fx-padding: 3 6 6 6;
+}
+.button1{
+    -fx-text-fill: #006464;
+    -fx-background-color: #DFB951;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-padding: 5;
+}
+.borders{
+    -fx-border-color: rgb(103, 100, 78);
+    -fx-border-style: dotted;
+    -fx-border-width: 1.5;
+    -fx-border-insets: -5;
+}
+/*.window-system-mode > .split-pane-divider {
+    -fx-background-color: red;
+    -fx-padding: 0.025em;
+        -fx-padding: 0 0.25em 0 0.25em;  0 3 0 3
+        -fx-background-color: black;
+}
+ horizontal the two nodes are placed to the left/right of each other.
+.window-system-mode:horizontal > .split-pane-divider {
+    -fx-background-color: red;
+            -fx-background-color: blue, -fx-inner-border-horizontal;
+    -fx-background-insets: 0, 0 1 0 1;
+}
+ vertical the two nodes are placed on top of each other.
+.window-system-mode:vertical > .split-pane-divider {
+    -fx-background-insets: 0, 10 0 10 0;
+    -fx-background-insets: 0, 5;
+    -fx-padding: 0.025em;
+    -fx-padding: 1em;
+}*/
+/*.www {
+    -fx-padding: 0 0.05em 0 0.05em;
+}
+ horizontal the two nodes are placed to the left/right of each other.
+.split-pane:horizontal > .split-pane-divider {
+    -fx-background-color: -fx-box-border, -fx-inner-border-horizontal;
+    -fx-background-insets: 0, 0 1 0 1;
+}
+ vertical the two nodes are placed on top of each other.
+.split-pane:vertical > .split-pane-divider {
+    -fx-background-color: -fx-box-border, -fx-inner-border;
+    -fx-background-insets: 0, 1 0 1 0;
+}*/

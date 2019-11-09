@@ -50,6 +50,7 @@ public class AppStarter extends Application {
         scene.getAccelerators().put(new KeyCodeCombination(KeyCode.Q, KeyCombination.SHORTCUT_DOWN), () -> {
             stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST));
         });
+        //scene.getStylesheets().add("main.css");
 
         stage.setTitle("WindowSystemFX Demo");
         stage.setScene(scene);
@@ -62,11 +63,23 @@ public class AppStarter extends Application {
     private Node createToolBar() {
         ToolBar toolBar = new ToolBar();
         Button b1 = new Button("close L1A");
+        Button b2 = new Button("Show Root");
+        Button b3 = new Button("Show Only Center");
+
         b1.setOnAction((event) -> {
             System.out.println("TODO");
         });
+        b2.setOnAction((event) -> {
+            mWindowManager.showRoot();
+        });
+        b3.setOnAction((event) -> {
+            mWindowManager.showOnlyWindowById("se.trixon.windowsystemfx.demo.windows.middleMiddle");
+        });
+
         toolBar.getItems().addAll(
-                b1
+                b1,
+                b2,
+                b3
         );
 
         return toolBar;
